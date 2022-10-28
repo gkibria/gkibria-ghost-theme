@@ -1,0 +1,28 @@
+routes:
+  /development/:
+    controller: channel
+    template: development
+    filter: tag:[javascript,api,git,php,strapi,vuejs,directus,dev-ops,nuxt,react,svelte,database,nodejs,frontend,backend,ghost]
+  /health-informatics/:
+    controller: channel
+    template: health-informatics
+    filter: tag:[fhir,loinc,ehr,emr,snomed,data-science,research]
+
+collections:
+  /portfolio/:
+    permalink: /portfolio/{slug}/
+    template: portfolio
+    filter: primary_tag:portfolio
+    data: tag.portfolio
+  /guitar/:
+    permalink: /guitar/{slug}/
+    template: guitar_videos
+    filter: primary_tag:guitar-videos
+    data: tag.guitar-videos
+  /:
+    permalink: /article/{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

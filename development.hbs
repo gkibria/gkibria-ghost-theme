@@ -1,0 +1,112 @@
+{{!< default}} 
+
+<main class="site-main">
+
+    <section class="taxonomy">
+
+        {{#if feature_image}}
+        <div class="taxonomy-media u-placeholder square">
+            <img class="u-object-fit" src="{{img_url feature_image size=" s"}}" alt="{{name}}">
+        </div>
+        {{/if}}
+
+        <header class="single-header gh-canvas">
+            {{#if @custom.dev_title}}
+                <h1 class="single-title">{{@custom.dev_title}}</h1>
+            {{else}}
+                <h1 class="single-title">Dev Articles</h1>
+            {{/if}}
+            
+            {{#if @custom.dev_description}}
+                <div class="single-excerpt">{{@custom.dev_description}}</div>
+            {{else}}
+                <div class="single-excerpt">Self wriiten articles, no AI!</div>
+            {{/if}}
+        </header>
+
+    </section>
+
+    <div class="portfolio">
+        {{#foreach posts}}
+        
+            <article class="portfolio__item {{post_class}}" style="">
+            <a href={{url}} aria-label="{{title}}">
+                <div class="u-placeholder horizontal">
+                    {{#if feature_image}}
+                        <img
+                            class="u-object-fit"
+                            srcset="{{> "srcset"}}"
+                            sizes="(min-width: 1256px) calc((1130px - 60px) / 3), (min-width: 992px) calc((90vw - 60px) / 3), (min-width: 768px) calc((90vw - 30px) / 2), 90vw"
+                            src="{{img_url feature_image size="m"}}"
+                            alt="{{title}}"
+                            loading="lazy"
+                        >
+                    {{/if}}
+                </div>
+                <h5 class="post-title">{{title}}</h5>
+                <p class="post-excerpt">{{excerpt words="20"}}</p>
+                <div class="post-tags">{{tags}}</div>
+            </a>
+            </article>
+
+        {{/foreach}}
+    </div>
+
+    {{pagination}}
+
+</main>
+
+<style>
+    .site-main {
+        max-width: 1200px;
+        margin: auto;
+    }
+    .portfolio {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin: 2rem;
+    }
+
+    .portfolio__item {
+        height: 100%;
+        width: 100%;
+        border-radius: 10px;
+        border: 5px solid #ececec;
+
+    }
+    .portfolio .post-title {
+        padding: 1rem;
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: -.005em;
+        line-height: 1.25;
+        margin-bottom: 0;
+    }
+
+    .portfolio .post-excerpt {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .portfolio .post-tags {
+        text-align: center;
+        padding-bottom: 0.5rem;
+    }
+
+    .portfolio .post-tags a {
+        color:rgb(63, 152, 93);
+    }
+
+    @media screen and (max-width: 991px) {
+        .portfolio {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .portfolio {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+</style>
